@@ -1,8 +1,33 @@
 # anilist-calendar
 
+[![CI](https://github.com/gavxm/anilist-calendar/actions/workflows/ci.yml/badge.svg)](https://github.com/gavxm/anilist-calendar/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/anilist-calendar)](https://www.npmjs.com/package/anilist-calendar)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Generates iCal (`.ics`) feeds for a user's currently watching anime airing schedule from [AniList](https://anilist.co). Subscribe to the URL in Google Calendar, Apple Calendar, Outlook, etc. to see upcoming episodes on your calendar.
 
-## Usage
+## Quick start
+
+```sh
+# One-off — no install needed
+npx anilist-calendar <username> > schedule.ics
+
+# Or install globally
+npm install -g anilist-calendar
+anilist-calendar <username> > schedule.ics
+```
+
+### CLI options
+
+```sh
+anilist-calendar <username> [--planning] [--remind N] [--past N]
+```
+
+- `--planning` — include anime from your PLANNING list
+- `--remind N` — add reminders N minutes before each episode
+- `--past N` — include episodes from the past N days
+
+## Hosted usage
 
 ```text
 GET /<username>.ics
