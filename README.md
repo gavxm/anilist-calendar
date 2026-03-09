@@ -11,6 +11,18 @@ GET /?user=<username>
 
 Returns a `text/calendar` response with `VEVENT` entries for each upcoming episode.
 
+Visiting `/` in a browser shows a landing page with a form to generate your feed URL.
+
+### Query parameters
+
+| Param | Example | Description |
+| ----- | ------- | ----------- |
+| `planning` | `?planning=1` | Include anime from your PLANNING list that are currently airing |
+| `remind` | `?remind=30` | Add a VALARM reminder N minutes before each episode |
+| `past` | `?past=7` | Include episodes from the past N days (max 90) |
+
+Example: `/<username>.ics?planning=1&remind=15&past=7`
+
 ## Deploy
 
 ### Cloudflare Workers
@@ -38,6 +50,12 @@ npm run preview -- <username>  # Dump .ics to stdout for debugging
 npm run typecheck  # Type-check all source files
 ```
 
+The CLI supports the same options as query params:
+
+```sh
+npm run preview -- <username> --planning --remind 30 --past 7
+```
+
 ## Project structure
 
 ```text
@@ -46,6 +64,7 @@ src/
   index.ts     # Cloudflare Workers entry point (with edge caching)
   vercel.ts    # Vercel Edge Functions entry point
   cli.ts       # CLI preview tool
+  landing.ts   # HTML landing page with username form
   anilist.ts   # AniList GraphQL queries + types
   ical.ts      # .ics string generation (RFC 5545)
 ```

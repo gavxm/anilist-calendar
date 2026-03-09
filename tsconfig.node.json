@@ -12,5 +12,5 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["src/cli.ts", "src/vercel.ts", "src/handler.ts", "src/anilist.ts", "src/ical.ts"]
+  "include": ["src/cli.ts", "src/vercel.ts", "src/handler.ts", "src/anilist.ts", "src/ical.ts", "src/landing.ts"]
 }
