@@ -3,7 +3,7 @@
  * iCal (.ics) feed generator - converts airing schedules into RFC 5545 calendar events.
  */
 
-import { AiringSchedule } from "./anilist";
+import { AiringSchedule } from "./anilist.js";
 
 // ---------------------------------------------------------------------------
 // Types

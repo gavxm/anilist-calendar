@@ -10,7 +10,7 @@
  * avoid excessive requests to the AniList API on every calendar poll.
  */
 
-import { handleRequest } from "./handler";
+import { handleRequest } from "./handler.js";
 
 // ---------------------------------------------------------------------------
 // Worker handler

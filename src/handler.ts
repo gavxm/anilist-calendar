@@ -5,9 +5,9 @@
  * Used by the Cloudflare Worker, Vercel, and any other HTTP adapter.
  */
 
-import { getWatchingMediaIds, getAiringSchedules, UserNotFoundError } from "./anilist";
-import { generateIcal } from "./ical";
-import { landingPage } from "./landing";
+import { getWatchingMediaIds, getAiringSchedules, UserNotFoundError } from "./anilist.js";
+import { generateIcal } from "./ical.js";
+import { landingPage } from "./landing.js";
 
 // ---------------------------------------------------------------------------
 // Handler

@@ -8,7 +8,7 @@
  * or configure the build output in `vercel.json`.
  */
 
-import { handleRequest } from "./handler";
+import { handleRequest } from "./handler.js";
 
 // ---------------------------------------------------------------------------
 // Vercel edge handler

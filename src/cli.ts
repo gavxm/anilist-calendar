@@ -1,15 +1,16 @@
+#!/usr/bin/env node
 /**
  * @module cli
  * CLI preview tool - dumps the .ics feed for a given AniList username to stdout.
  *
  * Usage:
- *   npx tsx src/cli.ts <username> [--planning] [--remind N] [--past N]
+ *   anilist-calendar <username> [--planning] [--remind N] [--past N]
  *   npm run preview -- <username> [--planning] [--remind N] [--past N]
  */
 
 import { parseArgs } from "node:util";
-import { getWatchingMediaIds, getAiringSchedules } from "./anilist";
-import { generateIcal } from "./ical";
+import { getWatchingMediaIds, getAiringSchedules } from "./anilist.js";
+import { generateIcal } from "./ical.js";
 
 // ---------------------------------------------------------------------------
 // Main
@@ -32,7 +33,7 @@ async function main() {
   const pastDays = Math.max(0, Number(values.past) || 0);
 
   if (!username) {
-    console.error("Usage: npx tsx src/cli.ts <username> [--planning] [--remind N] [--past N]");
+    console.error("Usage: anilist-calendar <username> [--planning] [--remind N] [--past N]");
     process.exit(1);
   }
 
