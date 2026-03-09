@@ -1,6 +1,6 @@
 {
   "name": "anilist-calendar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate iCal (.ics) feeds for your AniList anime airing schedule",
   "type": "module",
   "main": "dist/cli.js",
