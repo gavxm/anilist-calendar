@@ -14,7 +14,7 @@ echo "Releasing v${VERSION}..."
 
 npm version "$VERSION" --no-git-tag-version --allow-same-version
 
-git add package.json
+git add package.json package-lock.json
 if ! git diff --cached --quiet; then
   git commit -m "v${VERSION}"
 fi
