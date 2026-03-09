@@ -1,16 +1,45 @@
 {
   "name": "anilist-calendar",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.0.0",
+  "description": "Generate iCal (.ics) feeds for your AniList anime airing schedule",
+  "type": "module",
+  "main": "dist/cli.js",
+  "bin": {
+    "anilist-calendar": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
+    "build": "tsc -p tsconfig.build.json",
     "preview": "tsx src/cli.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json"
   },
+  "keywords": [
+    "anilist",
+    "anime",
+    "calendar",
+    "ical",
+    "ics",
+    "airing-schedule"
+  ],
   "author": "gavxm <gavxm@pm.me>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavxm/anilist-calendar.git"
+  },
+  "homepage": "https://github.com/gavxm/anilist-calendar#readme",
+  "bugs": {
+    "url": "https://github.com/gavxm/anilist-calendar/issues"
+  },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241205.0",
     "@types/node": "^25.3.5",
