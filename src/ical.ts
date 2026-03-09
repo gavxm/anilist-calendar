@@ -6,6 +6,16 @@
 import { AiringSchedule } from "./anilist";
 
 // ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+
+/** Options for customizing the generated iCal feed. */
+export interface IcalOptions {
+  /** Minutes before the event to trigger a VALARM reminder. 0 = no reminder. */
+  remindMinutes?: number;
+}
+
+// ---------------------------------------------------------------------------
 // Formatting helpers
 // ---------------------------------------------------------------------------
 
@@ -38,7 +48,7 @@ function escapeText(text: string): string {
  * Builds a single VEVENT block for an airing episode.
  * Falls back to 24 minutes if the show has no duration set on AniList.
  */
-function buildEvent(schedule: AiringSchedule, now: string): string {
+function buildEvent(schedule: AiringSchedule, now: string, options: IcalOptions): string {
   const title = schedule.media.title.english || schedule.media.title.romaji;
   const durationMin = schedule.media.duration || 24;
   const start = schedule.airingAt;
@@ -52,8 +62,20 @@ function buildEvent(schedule: AiringSchedule, now: string): string {
     `DTEND:${formatDate(end)}`,
     `SUMMARY:${escapeText(title)} - Episode ${schedule.episode}`,
     `DESCRIPTION:${escapeText(title)} Episode ${schedule.episode}`,
-    "END:VEVENT",
   ];
+
+  // Optional pre-event reminder
+  if (options.remindMinutes && options.remindMinutes > 0) {
+    lines.push(
+      "BEGIN:VALARM",
+      "TRIGGER:-PT" + options.remindMinutes + "M",
+      "ACTION:DISPLAY",
+      `DESCRIPTION:${escapeText(title)} - Episode ${schedule.episode} starts soon`,
+      "END:VALARM",
+    );
+  }
+
+  lines.push("END:VEVENT");
 
   return lines.join("\r\n");
 }
@@ -66,9 +88,13 @@ function buildEvent(schedule: AiringSchedule, now: string): string {
  * Generates a complete .ics calendar string from a list of airing schedules.
  * The output is a valid iCal feed that calendar apps can subscribe to.
  */
-export function generateIcal(username: string, schedules: AiringSchedule[]): string {
+export function generateIcal(
+  username: string,
+  schedules: AiringSchedule[],
+  options: IcalOptions = {},
+): string {
   const now = formatDate(Math.floor(Date.now() / 1000));
-  const events = schedules.map((s) => buildEvent(s, now));
+  const events = schedules.map((s) => buildEvent(s, now, options));
 
   const lines = [
     "BEGIN:VCALENDAR",
