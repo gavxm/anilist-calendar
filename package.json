@@ -20,7 +20,8 @@
     "preview": "tsx src/cli.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json"
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json",
+    "release": "./scripts/release.sh"
   },
   "keywords": [
     "anilist",
